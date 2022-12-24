@@ -3,10 +3,13 @@ package selenium;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class CommonFuncWeb {
 
-    WebDriver driver;
-    WebElement element;
+    static WebDriver driver;
+    static WebElement webElement;
+    List<WebElement> webElements;
 
     public static boolean isElementExists(WebElement webElement){
         if (webElement!=null){
@@ -57,6 +60,15 @@ public class CommonFuncWeb {
             System.out.println("WebElement is null. Please Check");
             return null;
         }
+    }
+
+    public static List[] getElements(String parentWebElementXpath){
+//        webElements = new WebElement[]{};
+        if (parentWebElementXpath != null){
+
+        }
+
+        return new List[0];
     }
 
 }

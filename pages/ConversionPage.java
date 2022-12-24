@@ -6,10 +6,10 @@ import selenium.CommonFuncWeb;
 
 public class ConversionPage {
 
-    String convertFieldTitleXpath = "";
-    String convertFieldValueXpath = "";
-    String convertResultXpath = "";
-    String swapConvertButtonXpath = "";
+    String convertFieldTitleXpath = "//div[@class='main']//descendant::h1[contains(text(),'%s')]";//example - "//div[@class='main']//descendant::h1[contains(text(),'Celsius to Fahrenheit')]";
+    String convertFieldValueXpath = "//div[@class='main']//descendant::input[@id='argumentConv']";
+    String convertResultXpath = "//div[@class='main']//descendant::section[@id='result']";
+    String swapConvertButtonXpath = "//div[@class='main']//descendant::a[contains(@class,'swapIcon')]";
 
     WebElement convertFieldTitleElement;
     static WebElement convertFieldValueElement;

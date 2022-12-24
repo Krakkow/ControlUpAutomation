@@ -6,9 +6,9 @@ import selenium.CommonFuncWeb;
 
 public class MetricConversionsMainPage {
 
-    static String mainPageTitleElementXpath = "";
-    static String convertFromFieldXpath = "";
-    static String convertToFieldXpath = "";
+    static String mainPageTitleElementXpath = "//div[@id='logo']";
+    static String convertFromFieldXpath = "//div[@class='main']//descendant::input[@id='queryFrom']";
+    static String convertToFieldXpath = "//div[@class='main']//descendant::input[@id='queryTo']";
     static String convertButtonXpath = "";
     static String convertTypeButtonXpath = "//div[@id='mainLinks']/a[contains(text(), '%s')]";
 
@@ -17,6 +17,7 @@ public class MetricConversionsMainPage {
     static WebElement mainPageTitleElement;
     static WebElement convertFromFieldElement;
     static WebElement convertToFieldElement;
+    //currently there is no use for this button
     static WebElement convertButtonElement;
     static WebElement convertTypeButtonElement;
     static WebElement convertTypeCategoryButtonElement;
@@ -99,7 +100,7 @@ public class MetricConversionsMainPage {
                 convertTypeCategoryButtonElement.findElement(By.xpath(convertTypeButtonXpath));
             if (CommonFuncWeb.verifyElementExists(convertTypeCategoryButtonElement)){
                 if (CommonFuncWeb.clickOnElement(convertTypeCategoryButtonElement))
-                    return new MetricConversionTypesOfCategoryPage();
+                    return new MetricConversionTypesOfCategoryPage(conversionCategory);
             }else{
                 return null;
             }
