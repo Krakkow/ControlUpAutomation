@@ -45,9 +45,9 @@ public class ConversionPage {
     }
 
     public ConversionPage(String convertType) {
-//        convertFieldTitleElement.findElement(By.xpath(convertFieldTitleXpath));
-        convertFieldTitleXpath = String.format(convertFieldTitleXpath,convertType);
-        convertFieldTitleElement = CommonFuncWeb.findElement(convertFieldTitleXpath);
+            convertFieldTitleXpath = "//div[@class='main']//descendant::h1[contains(text(),'%s')]";
+            convertFieldTitleXpath = String.format(convertFieldTitleXpath,convertType);
+            convertFieldTitleElement = CommonFuncWeb.findElement(convertFieldTitleXpath);
         if (convertFieldTitleElement != null && LogicalFunctions.verifyStringContains(convertType,convertFieldTitleElement.getText()))
             initPageElements();
     }
@@ -67,19 +67,16 @@ public class ConversionPage {
     public boolean verifyPageTitle(String expPageTitle){
         if (convertFieldTitleElement!=null){
             String actualPageTitle = convertFieldTitleElement.getText();
-            if (LogicalFunctions.verifyStringContains(expPageTitle,actualPageTitle));
-            return true;
-        }else{
-            return false;
-        }
+            return LogicalFunctions.verifyStringContains(expPageTitle,actualPageTitle);
+            }
+        return false;
     }
 
     public boolean fillConvertField(String sConvertFromValue){
-        if (CommonFuncWeb.verifyElementExists(convertFieldValueElement)){
+        if (CommonFuncWeb.verifyElementExists(convertFieldValueElement)) {
             return CommonFuncWeb.fillTextField(convertFieldValueElement, sConvertFromValue);
-        }else{
-            return false;
         }
+        return false;
     }
 
     public int getValueOfConversion(){
@@ -87,7 +84,7 @@ public class ConversionPage {
             String[] parsedValue = getConvertResultElement().getText().trim().split("=");
             parsedValue = parsedValue[1].trim().split("\n");
             parsedValue = parsedValue[0].split("\\.");
-            Integer intValue = Integer.parseInt(parsedValue[0]);
+            int intValue = Integer.parseInt(parsedValue[0]);
             return intValue;
         }else{
             return 0;

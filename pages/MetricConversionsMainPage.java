@@ -35,11 +35,7 @@ public class MetricConversionsMainPage {
     public boolean verifyPageTitle(String expMainPageTitle) {
         if (CommonFuncWeb.verifyElementExists(mainPageTitleElement)){
             String actualMainPageTitle = mainPageTitleElement.getText();
-            if (LogicalFunctions.verifyStrings(expMainPageTitle,actualMainPageTitle)){
-                return true;
-            }else{
-                return false;
-            }
+            return LogicalFunctions.verifyStrings(expMainPageTitle, actualMainPageTitle);
         }
         return false;
     }
@@ -49,7 +45,7 @@ public class MetricConversionsMainPage {
         METERSTOFEET("Meters to Feet"),
         OUNCESTOGRAMS("Celcius to Fahrenhiet");
 
-        private String conversionType;
+        private final String conversionType;
         ConversionTypes(String conversionType) {
             this.conversionType = conversionType;
         }
@@ -63,6 +59,8 @@ public class MetricConversionsMainPage {
         convertFromFieldElement = CommonFuncWeb.findElement(convertFromFieldXpath);
         convertToFieldElement = CommonFuncWeb.findElement(convertToFieldXpath);
         bottomNavBarElement = CommonFuncWeb.findElement(bottomNavBarXpath);
+        convertTypeButtonXpath = "//div[@id='mainLinks']/a[contains(text(), '%s')]";
+        convertTypeCategoryButtonXpath = "//div[@id='typeMenu']/a[contains(text(), '%s')]";
     }
 
     public boolean clickOnConvertButton(){
@@ -94,6 +92,7 @@ public class MetricConversionsMainPage {
 
     public ConversionPage selectConversionType(String conversionType){
         if (conversionType != null){
+            initPageElement();
             convertTypeButtonXpath = String.format(convertTypeButtonXpath,conversionType);
             if (convertTypeButtonXpath != null)
                 convertTypeButtonElement = CommonFuncWeb.findElement(convertTypeButtonXpath);
@@ -110,6 +109,7 @@ public class MetricConversionsMainPage {
 
     public MetricConversionTypesOfCategoryPage selectConversionCategory(String conversionCategory){
         if (conversionCategory != null){
+            initPageElement();
             convertTypeCategoryButtonXpath = String.format(convertTypeCategoryButtonXpath,conversionCategory);
             if (convertTypeCategoryButtonXpath != null)
                 convertTypeCategoryButtonElement = CommonFuncWeb.findElement(convertTypeCategoryButtonXpath);
