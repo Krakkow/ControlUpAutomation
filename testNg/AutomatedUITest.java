@@ -19,20 +19,24 @@ public class AutomatedUITest extends BaseTest{
     int convertedValue = 0;
     int expectedFahrenheitValue = (valueToConvert *2)+20;
     double expectedFeetValue = valueToConvert*3.2808;
-    double expectedGramsValue = convertedValue/0.035274;
+    double expectedGramsValue = valueToConvert/0.035274;
     String conversionCategory = "";
     String conversionType = "";
     String expMainPageTitle = "Metric conversion charts and calculators for metric conversions";
+    MetricConversionsMainPage mainPage;
+    ConversionPage conversionPage;
+    MetricConversionTypesOfCategoryPage categoryPage;
+
 
 
     @Test(description = "Converting Celsius to Fahrenheit",testName = "Celsius to Fahrenheit")
     public void celsiusToFahrenheitTest(){
         myBrowser.navigateToWebPage("https://www.metric-conversions.org/");
         CommonFuncWeb.waitForPageToLoad(Duration.ofMillis(10000));
-        MetricConversionsMainPage mainPage = new MetricConversionsMainPage();
+        mainPage = new MetricConversionsMainPage();
         mainPage.verifyPageTitle(expMainPageTitle);
         conversionQuickType = "Celsius to Fahrenheit";
-        ConversionPage conversionPage = mainPage.selectConversionType(conversionQuickType);
+        conversionPage = mainPage.selectConversionType(conversionQuickType);
         Assert.assertTrue(conversionPage.verifyPageTitle(conversionQuickType));
         conversionPage.fillConvertField(valueToConvert.toString());
         convertedValue = (conversionPage.getValueOfConversion());
@@ -43,16 +47,17 @@ public class AutomatedUITest extends BaseTest{
     public void metersToFeetTest(){
         myBrowser.navigateToWebPage("https://www.metric-conversions.org/");
         CommonFuncWeb.waitForPageToLoad(Duration.ofMillis(10000));
-        MetricConversionsMainPage mainPage = new MetricConversionsMainPage();
+        mainPage = new MetricConversionsMainPage();
         mainPage.verifyPageTitle(expMainPageTitle);
         conversionCategory = "Length";
         conversionType = "Meters to Feet";
-        MetricConversionTypesOfCategoryPage categoryPage = mainPage.selectConversionCategory(conversionCategory);
-        ConversionPage conversionPage = categoryPage.selectCategoryConversionType(conversionType);
+        categoryPage = mainPage.selectConversionCategory(conversionCategory);
+        conversionPage = categoryPage.selectCategoryConversionType(conversionType);
         Assert.assertTrue(conversionPage.verifyPageTitle(conversionType));
         conversionPage.fillConvertField(valueToConvert.toString());
         conversionPage.selectFormatFromDropDown("Decimal");
         convertedValue = (conversionPage.getValueOfConversion());
+        expectedFeetValue = (int)expectedFeetValue;
         Assert.assertEquals(convertedValue, expectedFeetValue);
     }
 
@@ -60,13 +65,17 @@ public class AutomatedUITest extends BaseTest{
     public void ouncesToGrams(){
         myBrowser.navigateToWebPage("https://www.metric-conversions.org/");
         CommonFuncWeb.waitForPageToLoad(Duration.ofMillis(10000));
-        MetricConversionsMainPage mainPage = new MetricConversionsMainPage();
+        mainPage = new MetricConversionsMainPage();
         mainPage.verifyPageTitle(expMainPageTitle);
-        conversionQuickType = "Ounces to Grams";
-        ConversionPage conversionPage = mainPage.selectConversionType(conversionQuickType);
-        Assert.assertTrue(conversionPage.verifyPageTitle(conversionQuickType));
+        conversionCategory = "Weight";
+        conversionType = "Ounces to Grams";
+        categoryPage = mainPage.selectConversionCategory(conversionCategory);
+        conversionPage = categoryPage.selectCategoryConversionType(conversionType);
+        Assert.assertTrue(conversionPage.verifyPageTitle(conversionType));
         conversionPage.fillConvertField(valueToConvert.toString());
+        conversionPage.selectFormatFromDropDown("Decimal");
         convertedValue = (conversionPage.getValueOfConversion());
+        expectedGramsValue = (int)expectedGramsValue;
         Assert.assertEquals(convertedValue, expectedGramsValue);
     }
 

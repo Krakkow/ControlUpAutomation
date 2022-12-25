@@ -116,24 +116,33 @@ public class CommonFuncWeb extends Browser{
         }
     }
 
-    public static boolean selectValueFromDropDown(WebElement[] webElements){
-        if (webElements!=null){
-            for (int i = 0; i< webElements.length; i++){
-                if (webElements[i].getText().equals("Decimal")){
-                    Select dropDownSelection = new Select(webElements[i]);
-                    System.out.println("Drop down value successfully selected");
-                    return true;
+    public static boolean selectValueFromDropDown(WebElement webElement, String expDropDownValue) {
+        if (webElement != null) {
+            Select dropDownSelection = new Select(webElement);
+            webElements = dropDownSelection.getOptions();
+            String dropDownValueAtIndex;
+            for (int i = 0; i< webElements.size(); i++){
+                if (webElements!= null){
+                    dropDownValueAtIndex = webElements.get(i).getText();
+                    if (dropDownValueAtIndex.equals(expDropDownValue)){
+                        dropDownSelection.selectByIndex(i);
+                        return true;
+                    }else{
+                        System.out.println("Searching still for the required dropdown item");
+                    }
                 }else{
-                    System.out.println("Drop down value wasn't selected successfully. Please Check.");
+                    System.out.println("Webelements list in null. Please Check.");
+                    return false;
                 }
-        }
-            System.out.println("Drop down item was not found.");
+            }
+            System.out.println("Drop down value successfully selected");
+            return true;
+        }else{
+            System.out.println("WebElement is null. Please Check.");
             return false;
-
         }
-        System.out.println("WebElements array is null. Please Check.");
-        return false;
     }
+
 
     public static boolean scrollToElement(WebElement webElement){
         if (verifyElementExists(webElement)){

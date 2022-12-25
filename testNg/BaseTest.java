@@ -13,8 +13,6 @@ public class BaseTest {
     @BeforeTest
     public void beforeTest(){
         myBrowser = new Browser();
-//        myBrowser.navigateToWebPage("https://www.metric-conversions.org/");
-//        CommonFuncWeb.waitForPageToLoad(Duration.ofMillis(10000));
     }
 
     @AfterTest

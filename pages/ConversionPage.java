@@ -14,6 +14,8 @@ public class ConversionPage {
     static String swapConvertButtonXpath = "//div[@class='main']//descendant::a[contains(@class,'swapIcon')]";
     static String formatDropDownValuesXpath = "//div[@id='visibleControls']//descendant::*[@id='opformat']/option";
     static String formatDropDownXpath = "//*[@id='metricConversionTable']//descendant::*[@id='visibleControls']/div//descendant::*[@id='opformat']";
+    static String resultDropDownXpath = "//section[@id='result']//descendant::select";
+    static String resultDropDownValuesXpath = "//section[@id='result']//descendant::select/option";
     static String bottomNavBarXpath = "//footer//descendant::nav[@id='menulinks']";
 
     static WebElement convertFieldTitleElement;
@@ -101,22 +103,12 @@ public class ConversionPage {
     }
 
         public boolean selectFormatFromDropDown(String expFormat){
+            formatDropDownElement = CommonFuncWeb.findElement(resultDropDownXpath);
         if (CommonFuncWeb.verifyElementExists(formatDropDownElement)){
             CommonFuncWeb.scrollToElement(formatDropDownElement);
             WebElement[] dropDownValue = getFormatDropDownValues();
-            CommonFuncWeb.selectValueFromDropDown(dropDownValue);
-            for (int i = 0; i<dropDownValue.length; i++){
-                if (dropDownValue[i].getText().equals(expFormat)){
-                    dropDownValue[i].click();
-                    System.out.println("Drop Down Item Selected Successfully");
-                    return true;
-                }else{
-                    System.out.println("Unable to find drop down element. Please Check.");
-                    return false;
-                }
-            }
-            System.out.println("Unable to find required format from dropdown. Please Check.");
-            return false;
+            if (CommonFuncWeb.selectValueFromDropDown(formatDropDownElement, expFormat))
+                return true;
         }
         return false;
         }
