@@ -1,13 +1,10 @@
 package testNg;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.ConversionPage;
 import pages.MetricConversionTypesOfCategoryPage;
 import pages.MetricConversionsMainPage;
-import selenium.Browser;
 import selenium.CommonFuncWeb;
 
 import java.time.Duration;

@@ -43,4 +43,13 @@ public class LogicalFunctions {
         System.out.println("Actual Page title is null. Please check.");
         return false;
     }
+
+    public static boolean compareWithMargin(Integer temperatureFromWeb, Integer temperatureFromApi, double decimalPercentageMarginLimit) {
+        if (temperatureFromWeb>=temperatureFromApi){
+            return ((temperatureFromWeb-temperatureFromApi)/100) <= decimalPercentageMarginLimit;
+        }else{
+            return ((temperatureFromApi-temperatureFromWeb)/100) <= decimalPercentageMarginLimit;
+        }
+    }
+
 }

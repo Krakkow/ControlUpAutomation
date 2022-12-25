@@ -1,6 +1,7 @@
 package selenium;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -148,6 +149,15 @@ public class CommonFuncWeb extends Browser{
         if (verifyElementExists(webElement)){
             Actions actions = new Actions(myDriver);
             actions.moveToElement(webElement);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static boolean clickEnter(WebElement webElement){
+        if (verifyElementExists(webElement)){
+            webElement.sendKeys(Keys.ENTER);
             return true;
         }else{
             return false;

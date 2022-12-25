@@ -6,6 +6,7 @@
             <class name="testNg.Test1"/>
             <class name="testNg.Test2"/>
             <class name="testNg.AutomatedUITest"/>
+            <class name="testNg.AutomatedApiTest"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
