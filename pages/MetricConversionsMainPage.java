@@ -1,18 +1,21 @@
 package pages;
 
+import common.LogicalFunctions;
+import net.sf.saxon.exslt.Common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import selenium.CommonFuncWeb;
 
 public class MetricConversionsMainPage {
 
-    static String mainPageTitleElementXpath = "//div[@id='logo']";
+    static String mainPageLogoXpath = "//div[@id='logo']";
+    static String mainPageTitleElementXpath = "//div[@class='main']/h1";
     static String convertFromFieldXpath = "//div[@class='main']//descendant::input[@id='queryFrom']";
     static String convertToFieldXpath = "//div[@class='main']//descendant::input[@id='queryTo']";
-    static String convertButtonXpath = "";
     static String convertTypeButtonXpath = "//div[@id='mainLinks']/a[contains(text(), '%s')]";
 
-    static String convertTypeCategoryButtonXpath = "//div[@id='typeMenu']/a[contains(text(), '%s)]";
+    static String convertTypeCategoryButtonXpath = "//div[@id='typeMenu']/a[contains(text(), '%s')]";
+    static String bottomNavBarXpath = "//footer//descendant::nav[@id='menulinks']";
 
     static WebElement mainPageTitleElement;
     static WebElement convertFromFieldElement;
@@ -21,11 +24,24 @@ public class MetricConversionsMainPage {
     static WebElement convertButtonElement;
     static WebElement convertTypeButtonElement;
     static WebElement convertTypeCategoryButtonElement;
+    static WebElement bottomNavBarElement;
 
     public MetricConversionsMainPage() {
-        mainPageTitleElement.findElement(By.xpath(mainPageTitleElementXpath));
+        mainPageTitleElement = CommonFuncWeb.findElement(mainPageTitleElementXpath);
         if (mainPageTitleElement != null)
             initPageElement();
+    }
+
+    public boolean verifyPageTitle(String expMainPageTitle) {
+        if (CommonFuncWeb.verifyElementExists(mainPageTitleElement)){
+            String actualMainPageTitle = mainPageTitleElement.getText();
+            if (LogicalFunctions.verifyStrings(expMainPageTitle,actualMainPageTitle)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
     }
 
     public enum ConversionTypes{
@@ -44,18 +60,16 @@ public class MetricConversionsMainPage {
     }
 
     private void initPageElement() {
-        convertFromFieldElement.findElement(By.xpath(convertFromFieldXpath));
-        convertToFieldElement.findElement(By.xpath(convertToFieldXpath));
-        convertButtonElement.findElement(By.xpath(convertButtonXpath));
-        convertTypeButtonElement.findElement(By.xpath(convertTypeButtonXpath));
+        convertFromFieldElement = CommonFuncWeb.findElement(convertFromFieldXpath);
+        convertToFieldElement = CommonFuncWeb.findElement(convertToFieldXpath);
+        bottomNavBarElement = CommonFuncWeb.findElement(bottomNavBarXpath);
     }
 
     public boolean clickOnConvertButton(){
-        if (convertButtonElement != null){
+        if (CommonFuncWeb.verifyElementExists(convertButtonElement)){
             convertButtonElement.click();
             return true;
         }else {
-            System.out.println("Element is null. Please check.");
             return false;
         }
     }
@@ -78,12 +92,13 @@ public class MetricConversionsMainPage {
         }
     }
 
-    public static ConversionPage selectConversionType(String conversionType){
+    public ConversionPage selectConversionType(String conversionType){
         if (conversionType != null){
-            convertTypeCategoryButtonXpath = String.format(convertTypeCategoryButtonXpath,conversionType);
-            if (convertTypeCategoryButtonXpath != null)
-                convertTypeButtonElement.findElement(By.xpath(convertTypeButtonXpath));
+            convertTypeButtonXpath = String.format(convertTypeButtonXpath,conversionType);
+            if (convertTypeButtonXpath != null)
+                convertTypeButtonElement = CommonFuncWeb.findElement(convertTypeButtonXpath);
             if (CommonFuncWeb.verifyElementExists(convertTypeButtonElement)){
+                CommonFuncWeb.scrollToElement(bottomNavBarElement);
                 if (CommonFuncWeb.clickOnElement(convertTypeButtonElement))
                     return new ConversionPage(conversionType);
             }else{
@@ -93,11 +108,11 @@ public class MetricConversionsMainPage {
         return null;
     }
 
-    public static MetricConversionTypesOfCategoryPage selectConversionCategory(String conversionCategory){
+    public MetricConversionTypesOfCategoryPage selectConversionCategory(String conversionCategory){
         if (conversionCategory != null){
-            convertTypeButtonXpath = String.format(convertTypeButtonXpath,conversionCategory);
-            if (convertTypeButtonXpath != null)
-                convertTypeCategoryButtonElement.findElement(By.xpath(convertTypeButtonXpath));
+            convertTypeCategoryButtonXpath = String.format(convertTypeCategoryButtonXpath,conversionCategory);
+            if (convertTypeCategoryButtonXpath != null)
+                convertTypeCategoryButtonElement = CommonFuncWeb.findElement(convertTypeCategoryButtonXpath);
             if (CommonFuncWeb.verifyElementExists(convertTypeCategoryButtonElement)){
                 if (CommonFuncWeb.clickOnElement(convertTypeCategoryButtonElement))
                     return new MetricConversionTypesOfCategoryPage(conversionCategory);
