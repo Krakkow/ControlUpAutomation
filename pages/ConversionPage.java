@@ -15,7 +15,6 @@ public class ConversionPage {
     static String formatDropDownValuesXpath = "//div[@id='visibleControls']//descendant::*[@id='opformat']/option";
     static String formatDropDownXpath = "//*[@id='metricConversionTable']//descendant::*[@id='visibleControls']/div//descendant::*[@id='opformat']";
     static String resultDropDownXpath = "//section[@id='result']//descendant::select";
-    static String resultDropDownValuesXpath = "//section[@id='result']//descendant::select/option";
     static String bottomNavBarXpath = "//footer//descendant::nav[@id='menulinks']";
 
     static WebElement convertFieldTitleElement;
@@ -52,8 +51,6 @@ public class ConversionPage {
             initPageElements();
     }
 
-    public ConversionPage() {
-    }
 
     private void initPageElements() {
         convertFieldValueElement = CommonFuncWeb.findElement(convertFieldValueXpath);
@@ -84,8 +81,7 @@ public class ConversionPage {
             String[] parsedValue = getConvertResultElement().getText().trim().split("=");
             parsedValue = parsedValue[1].trim().split("\n");
             parsedValue = parsedValue[0].split("\\.");
-            int intValue = Integer.parseInt(parsedValue[0]);
-            return intValue;
+            return Integer.parseInt(parsedValue[0]);
         }else{
             return 0;
         }
@@ -103,9 +99,7 @@ public class ConversionPage {
             formatDropDownElement = CommonFuncWeb.findElement(resultDropDownXpath);
         if (CommonFuncWeb.verifyElementExists(formatDropDownElement)){
             CommonFuncWeb.scrollToElement(formatDropDownElement);
-            WebElement[] dropDownValue = getFormatDropDownValues();
-            if (CommonFuncWeb.selectValueFromDropDown(formatDropDownElement, expFormat))
-                return true;
+            return CommonFuncWeb.selectValueFromDropDown(formatDropDownElement, expFormat);
         }
         return false;
         }
