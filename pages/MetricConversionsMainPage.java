@@ -32,6 +32,11 @@ public class MetricConversionsMainPage {
             initPageElement();
     }
 
+    /**
+     * <h1>Verify Page Title</h1>
+     * @param expMainPageTitle
+     * @return
+     */
     public boolean verifyPageTitle(String expMainPageTitle) {
         if (CommonFuncWeb.verifyElementExists(mainPageTitleElement)){
             String actualMainPageTitle = mainPageTitleElement.getText();
@@ -40,21 +45,9 @@ public class MetricConversionsMainPage {
         return false;
     }
 
-    public enum ConversionTypes{
-        CELCIUSTOFAHRENHEIT("Celsius to Fahrenheit"),
-        METERSTOFEET("Meters to Feet"),
-        OUNCESTOGRAMS("Celcius to Fahrenhiet");
-
-        private final String conversionType;
-        ConversionTypes(String conversionType) {
-            this.conversionType = conversionType;
-        }
-
-        public String getConversionType() {
-            return conversionType;
-        }
-    }
-
+    /**
+     * <h1>Page Elements Initiation</h1>
+     */
     private void initPageElement() {
         convertFromFieldElement = CommonFuncWeb.findElement(convertFromFieldXpath);
         convertToFieldElement = CommonFuncWeb.findElement(convertToFieldXpath);
@@ -63,6 +56,10 @@ public class MetricConversionsMainPage {
         convertTypeCategoryButtonXpath = "//div[@id='typeMenu']/a[contains(text(), '%s')]";
     }
 
+    /**
+     * <h1>Click on Convert Button</h1>
+     * @return boolean
+     */
     public boolean clickOnConvertButton(){
         if (CommonFuncWeb.verifyElementExists(convertButtonElement)){
             convertButtonElement.click();
@@ -72,6 +69,11 @@ public class MetricConversionsMainPage {
         }
     }
 
+    /**
+     * <h1>Fill Convert FROM field</h1>
+     * @param sConvertFromFieldText
+     * @return boolean
+     */
     public boolean fillConvertFromField(String sConvertFromFieldText){
         if (CommonFuncWeb.verifyElementExists(convertFromFieldElement)){
             CommonFuncWeb.fillTextField(convertFromFieldElement, sConvertFromFieldText);
@@ -80,7 +82,11 @@ public class MetricConversionsMainPage {
             return false;
         }
     }
-
+    /**
+     * <h1>Fill Convert TO field</h1>
+     * @param sConvertToFieldText
+     * @return boolean
+     */
     public boolean fillConvertToField(String sConvertToFieldText){
         if (CommonFuncWeb.verifyElementExists(convertToFieldElement)){
             CommonFuncWeb.fillTextField(convertToFieldElement,sConvertToFieldText);
@@ -90,6 +96,11 @@ public class MetricConversionsMainPage {
         }
     }
 
+    /**
+     * <h1>Select Conversion Type</h1>
+     * @param conversionType
+     * @return ConversionPage
+     */
     public ConversionPage selectConversionType(String conversionType){
         if (conversionType != null){
             initPageElement();
@@ -107,6 +118,11 @@ public class MetricConversionsMainPage {
         return null;
     }
 
+    /**
+     * <h1>Select Conversion Category</h1>
+     * @param conversionCategory
+     * @return MetricConversionTypesOfCategoryPage
+     */
     public MetricConversionTypesOfCategoryPage selectConversionCategory(String conversionCategory){
         if (conversionCategory != null){
             initPageElement();

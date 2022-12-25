@@ -51,7 +51,9 @@ public class ConversionPage {
             initPageElements();
     }
 
-
+    /**
+     * <h1>Page Elements initiation</h1>
+     */
     private void initPageElements() {
         convertFieldValueElement = CommonFuncWeb.findElement(convertFieldValueXpath);
         convertResultElement = CommonFuncWeb.findElement(convertResultXpath);
@@ -61,6 +63,11 @@ public class ConversionPage {
         bottomNavBarElement = CommonFuncWeb.findElement(bottomNavBarXpath);
     }
 
+    /**
+     * <h1>Verify Page Title</h1>
+     * @param expPageTitle
+     * @return boolean
+     */
     public boolean verifyPageTitle(String expPageTitle){
         if (convertFieldTitleElement!=null){
             String actualPageTitle = convertFieldTitleElement.getText();
@@ -69,6 +76,11 @@ public class ConversionPage {
         return false;
     }
 
+    /**
+     * <h1>Fill Convert Field</h1>
+     * @param sConvertFromValue
+     * @return boolean
+     */
     public boolean fillConvertField(String sConvertFromValue){
         if (CommonFuncWeb.verifyElementExists(convertFieldValueElement)) {
             return CommonFuncWeb.fillTextField(convertFieldValueElement, sConvertFromValue);
@@ -76,6 +88,10 @@ public class ConversionPage {
         return false;
     }
 
+    /**
+     * <h1>Get Values of Conversion</h1>
+     * @return int
+     */
     public int getValueOfConversion(){
         if (CommonFuncWeb.verifyElementExists(convertResultElement)){
             String[] parsedValue = getConvertResultElement().getText().trim().split("=");
@@ -87,6 +103,10 @@ public class ConversionPage {
         }
     }
 
+    /**
+     * <h1>Swap Conversion</h1>
+     * @return boolean
+     */
     public boolean swapConversion() {
         if (CommonFuncWeb.verifyElementExists(swapConvertButtonElement)) {
             return CommonFuncWeb.clickOnElement(swapConvertButtonElement);
@@ -95,6 +115,11 @@ public class ConversionPage {
         }
     }
 
+    /**
+     * <h1>Select Value Format From Results Drop Down</h1>
+     * @param expFormat
+     * @return
+     */
         public boolean selectFormatFromDropDown(String expFormat){
             formatDropDownElement = CommonFuncWeb.findElement(resultDropDownXpath);
         if (CommonFuncWeb.verifyElementExists(formatDropDownElement)){
@@ -104,13 +129,5 @@ public class ConversionPage {
         return false;
         }
 
-    public WebElement[] getFormatDropDownValues(){
-        if (formatDropDownElementList!=null){
-            formatDropDownElementArray = new WebElement[]{};
-            return formatDropDownElementList.toArray(formatDropDownElementArray);
-        }else{
-            return null;
-        }
-    }
 
 }

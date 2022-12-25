@@ -26,10 +26,18 @@ public class MetricConversionTypesOfCategoryPage extends MetricConversionsMainPa
         }
     }
 
+    /**
+     * <h1>Page Elements Initiation</h1>
+     */
     private void initPageElements() {
         categoryConvertTypesElement = CommonFuncWeb.getElements(categoryConvertTypesXpath);
     }
 
+    /**
+     * <h1>Verify Page Title</h1>
+     * @param expPageTitle
+     * @return boolean
+     */
     public boolean verifyPageTitle(String expPageTitle){
         String actualPageTitle;
         if (CommonFuncWeb.verifyElementExists(categoryPageTitleElement)){
@@ -43,6 +51,10 @@ public class MetricConversionTypesOfCategoryPage extends MetricConversionsMainPa
         return false;
     }
 
+    /**
+     * <h1>Get All Category Conversion Types</h1>
+     * @return WebElement[]
+     */
     public WebElement[] getAllCategoryConversionTypes(){
             if (categoryConvertTypesElement!=null){
                 categoryConvertTypesElementArray = new WebElement[]{};
@@ -52,6 +64,11 @@ public class MetricConversionTypesOfCategoryPage extends MetricConversionsMainPa
             }
     }
 
+    /**
+     * <h1>Select Category Conversion Type</h1>
+     * @param categoryConversionType
+     * @return ConversionPage
+     */
     public ConversionPage selectCategoryConversionType(String categoryConversionType){
         categoryConvertTypesElementArray = getAllCategoryConversionTypes();
         if (categoryConvertTypesElementArray!=null){

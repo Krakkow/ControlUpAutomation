@@ -3,7 +3,12 @@ package common;
 
 public class LogicalFunctions {
 
-
+    /**
+     * <h1>Verify Strings</h1>
+     * @param expString
+     * @param actualString
+     * @return boolean
+     */
     public static boolean verifyStrings(String expString, String actualString) {
         if (actualString != null){
             if (expString.equals(actualString)){
@@ -19,6 +24,12 @@ public class LogicalFunctions {
         return false;
     }
 
+    /**
+     * <h1>Verify String Contains</h1>
+     * @param expPageTitle
+     * @param actualPageTitle
+     * @return
+     */
     public static boolean verifyStringContains(String expPageTitle, String actualPageTitle) {
         if (actualPageTitle!=null){
             if (actualPageTitle.contains(expPageTitle)){
