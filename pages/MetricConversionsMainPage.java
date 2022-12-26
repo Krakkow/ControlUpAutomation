@@ -33,7 +33,7 @@ public class MetricConversionsMainPage {
 
     /**
      * <h1>Verify Page Title</h1>
-     * @param expMainPageTitle
+     * @param expMainPageTitle - send a string with the expected page title
      * @return
      */
     public boolean verifyPageTitle(String expMainPageTitle) {
@@ -97,7 +97,7 @@ public class MetricConversionsMainPage {
 
     /**
      * <h1>Select Conversion Type</h1>
-     * @param conversionType
+     * @param conversionType - Pass string like 'Meters to feet' through this function to select a conversion type from inside a conversion category
      * @return ConversionPage
      */
     public ConversionPage selectConversionType(String conversionType){
@@ -119,7 +119,7 @@ public class MetricConversionsMainPage {
 
     /**
      * <h1>Select Conversion Category</h1>
-     * @param conversionCategory
+     * @param conversionCategory - Pass string like 'Length' through this function to select a conversion category
      * @return MetricConversionTypesOfCategoryPage
      */
     public MetricConversionTypesOfCategoryPage selectConversionCategory(String conversionCategory){

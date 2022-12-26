@@ -52,7 +52,7 @@ public class MetricConversionTypesOfCategoryPage extends MetricConversionsMainPa
 
     /**
      * <h1>Get All Category Conversion Types</h1>
-     * @return WebElement[]
+     * @return WebElement[] - This function will get all the conversion type(i.e. Meters to feet) within a Conversion Category(i.e. Length)
      */
     public WebElement[] getAllCategoryConversionTypes(){
             if (categoryConvertTypesElement!=null){
@@ -65,7 +65,7 @@ public class MetricConversionTypesOfCategoryPage extends MetricConversionsMainPa
 
     /**
      * <h1>Select Category Conversion Type</h1>
-     * @param categoryConversionType
+     * @param categoryConversionType - Pass string like 'Meters to feet' through this function to select a conversion type from inside a conversion category
      * @return ConversionPage
      */
     public ConversionPage selectCategoryConversionType(String categoryConversionType){
