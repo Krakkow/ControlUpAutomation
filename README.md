@@ -34,5 +34,5 @@ and check that the gap between the 2 results is in the range of 10%.
 
 # How To Run
 Use your favorite IDE to clone this project.
-Make sure pom.xml installs all neccessary libreries
+Make sure pom.xml imports all neccessary dependencies.
 You either can run the whole suite from the TestNG.xml file by right clicking on it and pressing on Run or run each test class on its own by right-clicking the file and pressing run.
