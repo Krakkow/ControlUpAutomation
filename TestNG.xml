@@ -3,8 +3,6 @@
 <suite name="Automation Infra With TestNG">
     <test name="Test1">
         <classes>
-            <class name="testNg.Test1"/>
-            <class name="testNg.Test2"/>
             <class name="testNg.AutomatedUITest"/>
             <class name="testNg.AutomatedApiTest"/>
         </classes>
