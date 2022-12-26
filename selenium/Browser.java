@@ -5,9 +5,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Browser {
 
-    public static WebDriver myDriver = new ChromeDriver();
+    public static WebDriver myDriver;
 
     public Browser() {
+        myDriver = new ChromeDriver();
         myDriver.manage().window().maximize();
     }
 

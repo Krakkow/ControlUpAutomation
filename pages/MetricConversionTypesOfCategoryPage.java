@@ -1,7 +1,6 @@
 package pages;
 
 import common.LogicalFunctions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import selenium.CommonFuncWeb;
 
@@ -9,12 +8,12 @@ import java.util.List;
 
 public class MetricConversionTypesOfCategoryPage extends MetricConversionsMainPage{
 
-    public static String categoryPageTitleXpath ="//div[@class='main']/h1";
-    public static String categoryConvertTypesXpath = "//div[@class='main']//descendant::div[@id='popLinks']//descendant::li";
+    String categoryPageTitleXpath =".//div[@class='main']/h1";
+    String categoryConvertTypesXpath = ".//div[@class='main']//descendant::div[@id='popLinks']//descendant::li";
 
-    public static WebElement categoryPageTitleElement;
-    public static List<WebElement> categoryConvertTypesElement;
-    public static WebElement[] categoryConvertTypesElementArray;
+    WebElement categoryPageTitleElement;
+    List<WebElement> categoryConvertTypesElement;
+    WebElement[] categoryConvertTypesElementArray;
 
     public MetricConversionTypesOfCategoryPage(String conversionType) {
         categoryPageTitleElement = CommonFuncWeb.findElement((categoryPageTitleXpath));

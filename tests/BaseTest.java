@@ -1,11 +1,10 @@
-package testNg;
+package tests;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import selenium.Browser;
-import selenium.CommonFuncWeb;
-
-import java.time.Duration;
 
 public class BaseTest {
     Browser myBrowser;
@@ -19,5 +18,12 @@ public class BaseTest {
     public void afterTest(){
         myBrowser.closeBrowser();
     }
+
+    @BeforeClass
+    public void beforeClass(){
+        myBrowser = new Browser();
+    }
+    @AfterClass
+    public void afterClass(){myBrowser.closeBrowser();}
 
 }

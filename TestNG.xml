@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Automation Infra With TestNG">
-    <test name="Test1">
+    <test name="ControlUpAutomation">
         <classes>
-            <class name="testNg.AutomatedUITest"/>
-            <class name="testNg.AutomatedApiTest"/>
+            <class name="tests.AutomatedUITest"/>
+            <class name="tests.AutomatedApiTest"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

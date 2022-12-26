@@ -1,24 +1,23 @@
 package pages;
 
-import common.LogicalFunctions;
 import org.openqa.selenium.WebElement;
 import selenium.CommonFuncWeb;
 
-public class weatherMainPage {
+public class WeatherMainPage {
 
-    public static String mainPageLogoXpath = "//*[@class='MainMenuHeader--wrapperLeft--23iHH']";
-    public static String searchBarXpath = "//*[@id='LocationSearch_input']";
-    public static String temperatureValueXpath = "//*[@class='CurrentConditions--tempValue--MHmYY']";
-    public static String dropMenuButtonXpath = "//*[@data-testid='ctaButton']//descendant::*[@name='globe']";
-    public static String celsiusButtonInDropMenuXpath = "//div[contains(@class, 'ExpandableMenu')]//descendant::li[@id='UnitSelectorTabs-tab_1']";
+    String mainPageLogoXpath = "//*[@class='MainMenuHeader--wrapperLeft--23iHH']";
+    String searchBarXpath = "//*[@id='LocationSearch_input']";
+    static String temperatureValueXpath = "//*[@class='CurrentConditions--tempValue--MHmYY']";
+    String dropMenuButtonXpath = "//*[@data-testid='ctaButton']//descendant::*[@name='globe']";
+    String celsiusButtonInDropMenuXpath = "//div[contains(@class, 'ExpandableMenu')]//descendant::li[@id='UnitSelectorTabs-tab_1']";
 
-    public static WebElement mainPageLogoElement;
-    public static WebElement searchBarElement;
-    public static WebElement temperatureValueElement;
-    public static WebElement dropMenuButtonElement;
-    public static WebElement celsiusButtonInDropMenuElement;
+    WebElement mainPageLogoElement;
+    WebElement searchBarElement;
+    static WebElement temperatureValueElement;
+    WebElement dropMenuButtonElement;
+    WebElement celsiusButtonInDropMenuElement;
 
-    public weatherMainPage() {
+    public WeatherMainPage() {
         mainPageLogoElement = CommonFuncWeb.findElement(mainPageLogoXpath);
         if (mainPageLogoElement!=null)
             initPageElements();
@@ -49,7 +48,7 @@ public class weatherMainPage {
         initPageElements();
         if (CommonFuncWeb.verifyElementExists(dropMenuButtonElement)) {
             dropMenuButtonElement.click();
-            Thread.sleep(10000);
+            Thread.sleep(3500);
             celsiusButtonInDropMenuElement = CommonFuncWeb.findElement(celsiusButtonInDropMenuXpath);
             if (celsiusButtonInDropMenuElement != null) {
                 celsiusButtonInDropMenuElement.click();

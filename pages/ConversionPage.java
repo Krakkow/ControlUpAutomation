@@ -8,24 +8,23 @@ import java.util.List;
 
 public class ConversionPage {
 
-    static String convertFieldTitleXpath = "//div[@class='main']//descendant::h1[contains(text(),'%s')]";//example - "//div[@class='main']//descendant::h1[contains(text(),'Celsius to Fahrenheit')]";
-    static String convertFieldValueXpath = "//div[@class='main']//descendant::input[@id='argumentConv']";
-    static String convertResultXpath = "//div[@class='main']//descendant::section[@id='result']";
-    static String swapConvertButtonXpath = "//div[@class='main']//descendant::a[contains(@class,'swapIcon')]";
-    static String formatDropDownValuesXpath = "//div[@id='visibleControls']//descendant::*[@id='opformat']/option";
-    static String formatDropDownXpath = "//*[@id='metricConversionTable']//descendant::*[@id='visibleControls']/div//descendant::*[@id='opformat']";
-    static String resultDropDownXpath = "//section[@id='result']//descendant::select";
-    static String bottomNavBarXpath = "//footer//descendant::nav[@id='menulinks']";
+    String convertFieldTitleXpath;//example - "//div[@class='main']//descendant::h1[contains(text(),'Celsius to Fahrenheit')]";
+    String convertFieldValueXpath = ".//div[@class='main']//descendant::input[@id='argumentConv']";
+    String convertResultXpath = ".//div[@class='main']//descendant::section[@id='result']";
+    String swapConvertButtonXpath = ".//div[@class='main']//descendant::a[contains(@class,'swapIcon')]";
+    String formatDropDownValuesXpath = ".//div[@id='visibleControls']//descendant::*[@id='opformat']/option";
+    String formatDropDownXpath = ".//*[@id='metricConversionTable']//descendant::*[@id='visibleControls']/div//descendant::*[@id='opformat']";
+    String resultDropDownXpath = ".//section[@id='result']//descendant::select";
+    String bottomNavBarXpath = ".//footer//descendant::nav[@id='menulinks']";
 
-    static WebElement convertFieldTitleElement;
+    WebElement convertFieldTitleElement;
     static WebElement convertFieldValueElement;
     static WebElement convertResultElement;
     static WebElement swapConvertButtonElement;
-    static WebElement formatDropDownElement;
-    static WebElement bottomNavBarElement;
+    WebElement formatDropDownElement;
+    WebElement bottomNavBarElement;
 
-    public static List<WebElement> formatDropDownElementList;
-    public static WebElement[] formatDropDownElementArray;
+    List<WebElement> formatDropDownElementList;
 
     public WebElement getConvertFieldTitleElement() {
         return convertFieldTitleElement;
@@ -44,7 +43,7 @@ public class ConversionPage {
     }
 
     public ConversionPage(String convertType) {
-            convertFieldTitleXpath = "//div[@class='main']//descendant::h1[contains(text(),'%s')]";
+            convertFieldTitleXpath = ".//div[@class='main']//descendant::h1[contains(text(),'%s')]";
             convertFieldTitleXpath = String.format(convertFieldTitleXpath,convertType);
             convertFieldTitleElement = CommonFuncWeb.findElement(convertFieldTitleXpath);
         if (convertFieldTitleElement != null && LogicalFunctions.verifyStringContains(convertType,convertFieldTitleElement.getText()))
@@ -53,6 +52,8 @@ public class ConversionPage {
 
     /**
      * <h1>Page Elements initiation</h1>
+     * This function is called from within the constructor of the class and from some of the functions if they caused a page refresh
+     * initiation of all relevant elements of the page
      */
     private void initPageElements() {
         convertFieldValueElement = CommonFuncWeb.findElement(convertFieldValueXpath);
@@ -65,7 +66,7 @@ public class ConversionPage {
 
     /**
      * <h1>Verify Page Title</h1>
-     * @param expPageTitle
+     * @param expPageTitle - send a string with the expected page title
      * @return boolean
      */
     public boolean verifyPageTitle(String expPageTitle){
@@ -78,7 +79,7 @@ public class ConversionPage {
 
     /**
      * <h1>Fill Convert Field</h1>
-     * @param sConvertFromValue
+     * @param sConvertFromValue - fill the convert field.
      * @return boolean
      */
     public boolean fillConvertField(String sConvertFromValue){
@@ -90,7 +91,7 @@ public class ConversionPage {
 
     /**
      * <h1>Get Values of Conversion</h1>
-     * @return int
+     * @return int - this function parse a string into numerical value
      */
     public int getValueOfConversion(){
         if (CommonFuncWeb.verifyElementExists(convertResultElement)){
@@ -105,6 +106,7 @@ public class ConversionPage {
 
     /**
      * <h1>Swap Conversion</h1>
+     * This functions click on the button that swap between the two conversions parameters
      * @return boolean
      */
     public boolean swapConversion() {
@@ -116,8 +118,8 @@ public class ConversionPage {
     }
 
     /**
-     * <h1>Select Value Format From Results Drop Down</h1>
-     * @param expFormat
+     * <h1>Select Item From Results Drop Down</h1>
+     * @param expFormat - send a string like 'Decimal' to set the format of the converted value
      * @return
      */
         public boolean selectFormatFromDropDown(String expFormat){

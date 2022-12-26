@@ -8,23 +8,22 @@ import selenium.CommonFuncWeb;
 
 public class MetricConversionsMainPage {
 
-    static String mainPageLogoXpath = "//div[@id='logo']";
-    static String mainPageTitleElementXpath = "//div[@class='main']/h1";
-    static String convertFromFieldXpath = "//div[@class='main']//descendant::input[@id='queryFrom']";
-    static String convertToFieldXpath = "//div[@class='main']//descendant::input[@id='queryTo']";
-    static String convertTypeButtonXpath = "//div[@id='mainLinks']/a[contains(text(), '%s')]";
+    String mainPageLogoXpath = ".//div[@id='logo']";
+    String mainPageTitleElementXpath = ".//div[@class='main']/h1";
+    String convertFromFieldXpath = ".//div[@class='main']//descendant::input[@id='queryFrom']";
+    String convertToFieldXpath = ".//div[@class='main']//descendant::input[@id='queryTo']";
+    String convertTypeButtonXpath = ".//div[@id='mainLinks']/a[contains(text(), '%s')]";
+    String convertTypeCategoryButtonXpath = ".//div[@id='typeMenu']/a[contains(text(), '%s')]";
+    String bottomNavBarXpath = ".//footer//descendant::nav[@id='menulinks']";
 
-    static String convertTypeCategoryButtonXpath = "//div[@id='typeMenu']/a[contains(text(), '%s')]";
-    static String bottomNavBarXpath = "//footer//descendant::nav[@id='menulinks']";
-
-    static WebElement mainPageTitleElement;
-    static WebElement convertFromFieldElement;
-    static WebElement convertToFieldElement;
+    WebElement mainPageTitleElement;
+    WebElement convertFromFieldElement;
+    WebElement convertToFieldElement;
     //currently there is no use for this button
-    static WebElement convertButtonElement;
-    static WebElement convertTypeButtonElement;
-    static WebElement convertTypeCategoryButtonElement;
-    static WebElement bottomNavBarElement;
+    WebElement convertButtonElement;
+    WebElement convertTypeButtonElement;
+    WebElement convertTypeCategoryButtonElement;
+    WebElement bottomNavBarElement;
 
     public MetricConversionsMainPage() {
         mainPageTitleElement = CommonFuncWeb.findElement(mainPageTitleElementXpath);
