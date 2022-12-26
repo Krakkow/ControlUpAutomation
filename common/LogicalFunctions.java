@@ -1,6 +1,9 @@
 package common;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LogicalFunctions {
 
     /**
@@ -28,7 +31,7 @@ public class LogicalFunctions {
      * <h1>Verify String Contains</h1>
      * @param expPageTitle
      * @param actualPageTitle
-     * @return
+     * @return boolean
      */
     public static boolean verifyStringContains(String expPageTitle, String actualPageTitle) {
         if (actualPageTitle!=null){
@@ -50,6 +53,16 @@ public class LogicalFunctions {
         }else{
             return ((temperatureFromApi-temperatureFromWeb)/100) <= decimalPercentageMarginLimit;
         }
+    }
+
+    public static int getDigitFromString(String sTextWithDigitInIt){
+        int extractedDigit = 0;
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(sTextWithDigitInIt);
+        while (m.find()){
+            extractedDigit = Integer.parseInt(m.group());
+        }
+        return extractedDigit;
     }
 
 }

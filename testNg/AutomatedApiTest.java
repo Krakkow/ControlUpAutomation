@@ -9,6 +9,7 @@ import pages.weatherMainPage;
 import utils.RestUtil;
 
 public class AutomatedApiTest extends BaseTest{
+    String baseURI = "https://api.weatherapi.com/v1";
     String apiKey = "448862bc2bf740ef970212636222512";
     String zipCode = "20852";
     Integer temperatureFromWeb;
@@ -18,14 +19,20 @@ public class AutomatedApiTest extends BaseTest{
         public void apiTest() throws InterruptedException {
         myBrowser.navigateToWebPage("http://www.weather.com");
         weatherMainPage mainPage = new weatherMainPage();
-        mainPage.searchByZipCode(zipCode);
-        mainPage.switchToCelsius();
-        temperatureFromWeb = Integer.parseInt(mainPage.getTemperatureValueElement());
-        Response actualResponse = RestUtil.executeGetRestAssured(RestUtil.MethodType.GET,"https://api.weatherapi.com/v1/current.json?key="+apiKey+"&q="+zipCode,null,200 );
-        String actualResponseBodyAsString = actualResponse.asString();
-        System.out.println(actualResponseBodyAsString);
-        temperatureFromApi = Integer.parseInt(RestUtil.getKeyValueFromRESTAssuredResponse(actualResponse, ContentType.JSON,"current.temp_c"));
-        Assert.assertTrue(LogicalFunctions.compareWithMargin(temperatureFromWeb,temperatureFromApi,0.1));
+        Thread.sleep(5000);
+        if (mainPage.searchByZipCode(zipCode)){
+            Thread.sleep(5000);
+            if (mainPage.switchToCelsius()){
+                temperatureFromWeb = LogicalFunctions.getDigitFromString(weatherMainPage.getTemperatureValueElement());
+                Response actualResponse = RestUtil.executeGetRestAssured(RestUtil.MethodType.GET,baseURI+"/current.json?key="+apiKey+"&q="+zipCode,null,200 );
+                temperatureFromApi = LogicalFunctions.getDigitFromString(RestUtil.getKeyValueFromRESTAssuredResponse(actualResponse, ContentType.JSON,"current.temp_c"));
+                Assert.assertTrue(LogicalFunctions.compareWithMargin(temperatureFromWeb,temperatureFromApi,0.1));
+            }else{
+                Assert.fail("Failed To Switch to Celsius");
+            }
+        }else{
+            Assert.fail("Failed To Search for Zip Code");
+        }
 
     }
 

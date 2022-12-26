@@ -9,7 +9,7 @@ public class weatherMainPage {
     public static String mainPageLogoXpath = "//*[@class='MainMenuHeader--wrapperLeft--23iHH']";
     public static String searchBarXpath = "//*[@id='LocationSearch_input']";
     public static String temperatureValueXpath = "//*[@class='CurrentConditions--tempValue--MHmYY']";
-    public static String dropMenuButtonXpath = "//*[@data-testid='ctaButton']/div[@class='LanguageSelector--menuButtonInner--3z59Z']";
+    public static String dropMenuButtonXpath = "//*[@data-testid='ctaButton']//descendant::*[@name='globe']";
     public static String celsiusButtonInDropMenuXpath = "//div[contains(@class, 'ExpandableMenu')]//descendant::li[@id='UnitSelectorTabs-tab_1']";
 
     public static WebElement mainPageLogoElement;
@@ -30,11 +30,11 @@ public class weatherMainPage {
     }
 
     public boolean searchByZipCode(String sText) throws InterruptedException {
+        initPageElements();
         if (CommonFuncWeb.verifyElementExists(searchBarElement)){
             if (CommonFuncWeb.fillTextField(searchBarElement, sText)){
                 Thread.sleep(1500);
                 CommonFuncWeb.clickEnter(searchBarElement);
-                initPageElements();
                 temperatureValueElement = CommonFuncWeb.findElement(temperatureValueXpath);
                 return true;
             }else{
@@ -45,15 +45,20 @@ public class weatherMainPage {
         }
     }
 
-    public boolean switchToCelsius(){
-        if (CommonFuncWeb.verifyElementExists(dropMenuButtonElement)){
+    public boolean switchToCelsius() throws InterruptedException {
+        initPageElements();
+        if (CommonFuncWeb.verifyElementExists(dropMenuButtonElement)) {
             dropMenuButtonElement.click();
+            Thread.sleep(10000);
             celsiusButtonInDropMenuElement = CommonFuncWeb.findElement(celsiusButtonInDropMenuXpath);
-            celsiusButtonInDropMenuElement.click();
-            return true;
-        }else{
-            return false;
+            if (celsiusButtonInDropMenuElement != null) {
+                celsiusButtonInDropMenuElement.click();
+                return true;
+            } else {
+                return false;
+            }
         }
+        return false;
     }
 
     public static String getTemperatureValueElement() {
