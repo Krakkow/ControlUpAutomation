@@ -31,3 +31,8 @@ By using Selenium - Get the current temperature from www.weather.com for zip cod
 By using API – get the weather for the same zip code from https://www.weatherapi.com/
 
 and check that the gap between the 2 results is in the range of 10%. 
+
+# How To Run
+Use your favorite IDE to clone this project.
+Make sure pom.xml imports all neccessary dependencies.
+You either can run the whole suite from the TestNG.xml file by right clicking on it and pressing on Run or run each test class on its own by right-clicking the file and pressing run.
