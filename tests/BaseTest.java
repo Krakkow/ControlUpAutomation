@@ -24,6 +24,8 @@ public class BaseTest {
         myBrowser = new Browser();
     }
     @AfterClass
-    public void afterClass(){myBrowser.closeBrowser();}
+    public void afterClass(){
+        myBrowser.closeBrowser();
+    }
 
 }
