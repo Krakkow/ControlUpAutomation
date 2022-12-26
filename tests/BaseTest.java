@@ -1,9 +1,6 @@
 package tests;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import selenium.Browser;
 
 public class BaseTest {
@@ -25,6 +22,11 @@ public class BaseTest {
     }
     @AfterClass
     public void afterClass(){
+        myBrowser.closeBrowser();
+    }
+
+    @AfterSuite
+    public void afterSuite(){
         myBrowser.closeBrowser();
     }
 
