@@ -6,8 +6,8 @@ import selenium.Browser;
 public class BaseTest {
     Browser myBrowser;
 
-    @BeforeTest
-    public void beforeTest(){
+    @BeforeClass
+    public void beforeClass(){
         myBrowser = new Browser();
     }
 
@@ -16,10 +16,6 @@ public class BaseTest {
         myBrowser.closeBrowser();
     }
 
-    @BeforeClass
-    public void beforeClass(){
-        myBrowser = new Browser();
-    }
     @AfterClass
     public void afterClass(){
         myBrowser.closeBrowser();

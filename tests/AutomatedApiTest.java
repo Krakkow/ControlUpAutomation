@@ -21,12 +21,18 @@ public class AutomatedApiTest extends BaseTest{
         WeatherMainPage mainPage = new WeatherMainPage();
         Thread.sleep(5000);
         if (mainPage.searchByZipCode(zipCode)){
+            Assert.assertTrue(true,"Zipcode: " + zipCode + " was found successfully");
             Thread.sleep(5000);
             if (mainPage.switchToCelsius()){
+                Assert.assertTrue(true,"Switched to Celsius successfully.");
                 temperatureFromWeb = LogicalFunctions.getDigitFromString(WeatherMainPage.getTemperatureValueElement());
                 Response actualResponse = RestUtil.executeGetRestAssured(RestUtil.MethodType.GET,baseURI+"/current.json?key="+apiKey+"&q="+zipCode,null,200 );
                 temperatureFromApi = LogicalFunctions.getDigitFromString(RestUtil.getKeyValueFromRESTAssuredResponse(actualResponse, ContentType.JSON,"current.temp_c"));
-                Assert.assertTrue(LogicalFunctions.compareWithMargin(temperatureFromWeb,temperatureFromApi,0.1));
+                if (LogicalFunctions.compareWithMargin(temperatureFromWeb,temperatureFromApi,0.1)){
+                    Assert.assertTrue(true,"Margin equals or smaller then 10%");
+                }else{
+                    Assert.fail("Margin is larger then 10%");
+                }
             }else{
                 Assert.fail("Failed To Switch to Celsius");
             }
