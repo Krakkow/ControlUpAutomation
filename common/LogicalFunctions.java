@@ -49,9 +49,9 @@ public class LogicalFunctions {
 
     public static boolean compareWithMargin(Integer temperatureFromWeb, Integer temperatureFromApi, double decimalPercentageMarginLimit) {
         if (temperatureFromWeb>=temperatureFromApi){
-            return ((temperatureFromWeb-temperatureFromApi)/100) <= decimalPercentageMarginLimit;
+            return ((temperatureFromWeb/temperatureFromApi)-1) <= decimalPercentageMarginLimit;
         }else{
-            return ((temperatureFromApi-temperatureFromWeb)/100) <= decimalPercentageMarginLimit;
+            return ((temperatureFromApi/temperatureFromWeb)-1) <= decimalPercentageMarginLimit;
         }
     }
 

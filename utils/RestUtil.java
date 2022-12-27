@@ -27,7 +27,7 @@ public class RestUtil {
      * @param myMethod - enum of Method type - i.e. MethodType.GET
      * @param url - String of the Complete URL(base URI + parameters you should pass the complete the request)
      * @param myHeaders - Should be pass as a List object. Can be null.
-     * @param expStatusCode - for example 200
+     * @param expStatusCode - int. for example 200
      * @return Response object
      */
     public static Response executeGetRestAssured(MethodType myMethod, String url, Headers myHeaders,int expStatusCode){
