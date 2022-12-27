@@ -14,9 +14,9 @@ public class AutomatedUITest extends BaseTest{
     String conversionQuickType;
     Integer valueToConvert = 60;
     int convertedValue = 0;
-    int expectedFahrenheitValue = (valueToConvert *2)+20;
-    double expectedFeetValue = valueToConvert*3.2808;
-    double expectedGramsValue = valueToConvert/0.035274;
+    int celsiusToFahrenheitConversionFormula = (valueToConvert *2)+20;
+    double metersToFeetConversionFormula = valueToConvert*3.2808;
+    double ouncesToGramsConversionFormula = valueToConvert/0.035274;
     String conversionCategory = "";
     String conversionType = "";
     String expMainPageTitle = "Metric conversion charts and calculators for metric conversions";
@@ -37,7 +37,7 @@ public class AutomatedUITest extends BaseTest{
             if (conversionPage.verifyPageTitle(conversionQuickType)){
                 conversionPage.fillConvertField(valueToConvert.toString());
                 convertedValue = (conversionPage.getValueOfConversion());
-                Assert.assertEquals(convertedValue, expectedFahrenheitValue);
+                Assert.assertEquals(convertedValue, celsiusToFahrenheitConversionFormula);
             }else{
                 Assert.fail("Page Title Does not Match the Expected Page Title");
             }
@@ -60,8 +60,8 @@ public class AutomatedUITest extends BaseTest{
                 if (conversionPage.fillConvertField(valueToConvert.toString())){
                     if (conversionPage.selectFormatFromDropDown("Decimal")){
                         convertedValue = (conversionPage.getValueOfConversion());
-                        expectedFeetValue = (int)expectedFeetValue;
-                        Assert.assertEquals(convertedValue, expectedFeetValue);
+                        metersToFeetConversionFormula = (int) metersToFeetConversionFormula;
+                        Assert.assertEquals(convertedValue, metersToFeetConversionFormula);
                     }else{
                         Assert.fail("Failed to select item from dropdown list");
                     }
@@ -90,8 +90,8 @@ public class AutomatedUITest extends BaseTest{
                 if (conversionPage.fillConvertField(valueToConvert.toString())){
                     if (conversionPage.selectFormatFromDropDown("Decimal")){
                         convertedValue = (conversionPage.getValueOfConversion());
-                        expectedGramsValue = (int)expectedGramsValue;
-                        Assert.assertEquals(convertedValue, expectedGramsValue);
+                        ouncesToGramsConversionFormula = (int) ouncesToGramsConversionFormula;
+                        Assert.assertEquals(convertedValue, ouncesToGramsConversionFormula);
                     }else{
                         Assert.fail("Failed to select item from dropdown list");
                     }
