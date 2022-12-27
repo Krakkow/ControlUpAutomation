@@ -24,11 +24,11 @@ public class RestUtil {
 
     /**
      * Executing the Rest Request
-     * @param myMethod
-     * @param url
-     * @param myHeaders
-     * @param expStatusCode
-     * @return
+     * @param myMethod - enum of Method type - i.e. MethodType.GET
+     * @param url - String of the Complete URL(base URI + parameters you should pass the complete the request)
+     * @param myHeaders - Should be pass as a List object. Can be null.
+     * @param expStatusCode - for example 200
+     * @return Response object
      */
     public static Response executeGetRestAssured(MethodType myMethod, String url, Headers myHeaders,int expStatusCode){
         RequestSpecification myReqeuest;
@@ -53,10 +53,10 @@ public class RestUtil {
 
     /**
      * Getting Value according to Key from the response body
-     * @param myResponse
-     * @param contentType
-     * @param expKeyName
-     * @return
+     * @param myResponse - A Response object is being created when you use the executeGetRestAssured()
+     * @param contentType - i.e. application.json
+     * @param expKeyName - Pass as a string the path to the object within the json object - i.e. "current.temp_c"
+     * @return String value
      */
     public static String getKeyValueFromRESTAssuredResponse(Response myResponse, ContentType contentType, String expKeyName){
         if (myResponse!=null){
